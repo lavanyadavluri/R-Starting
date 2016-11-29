@@ -1,0 +1,75 @@
+library(shiny)
+
+
+ui <- fluidPage(
+
+  titlePanel("Quantium - Quotefile Generator"),
+  sidebarLayout(
+    sidebarPanel("Lets Get Started with the File Generation",
+                 checkboxInput("somevalue", "Some value", FALSE)),
+    mainPanel(
+      tabsetPanel(
+        tabPanel("Actions Choosen", plotOutput("plot"),
+                 verbatimTextOutput("value")),
+        tabPanel("Uploads", verbatimTextOutput("summary")),
+        tabPanel("Outputs", tableOutput("table"))
+      )
+    )
+  )
+)
+
+server <- function(input, output) {
+
+  output$value <- renderText({ input$somevalue })
+}
+
+
+shinyApp(ui = ui, server = server)
+
+
+# data()
+# mtcars
+# myData <- read.csv("AAMI_Motor_samples.tab", sep = "\t" , header = TRUE)
+# head(myData,10)
+#
+# AAMI <- read.delim("~/R/R-3.3.2/Ver1.1/AAMI_Motor_samples.tab", header=FALSE)
+# View(AAMI)
+#
+# rm(AAMI_Motor_samples)
+#
+#
+# library(RODBC)
+#
+# GetData <- function (Field1) {
+#   conn<- odbcDriverConnect('driver={SQL Server};server=SERVER;database=DATABASE;trusted_connection=yes')
+#
+#   data <- sqlQuery(conn,paste("exec my_STOREDPROC @Field1= '", Field1 , "';",sep =""),errors=FALSE)
+#   odbcCloseAll()
+#   data
+#   )
+# }
+#
+#
+# dbhandle <- odbcDriverConnect('driver={SQL Server};server=SWD-CHISSIS01;database=GlobalRiskManagement;trusted_connection=true')
+# data <-sqlQuery(dbhandle, "**set nocount on\n**EXEC my_Stored_Proc  @jyear=2013, @ddate=9/25/2013")
+# odbcCloseAll()
+#
+#
+# QATVPSQD005
+#
+# Quote_Collection
+
+#
+# USE [Quote_Collection]
+#
+#
+# EXEC  @return_value = [dbo].[GetSampleQuoteSet_Diagnostic]
+# @InsurerName = N'aami',
+# @ProductName = N'motor'
+
+
+
+
+
+
+
